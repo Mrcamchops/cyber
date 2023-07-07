@@ -1,3 +1,16 @@
-import scapy
+from scapy.all import *
+
+#basic blah blah 
+ip_layer = IP(src="10.10.10.47", dst="10.10.10.45")
+udp_layer = UDP(sport=443, dport=443)
+
+# malformation, inputting an invalid length for the header length is enough to make the packet "malformed"
+udp_layer.len = 8
+
+#build
+packet = ip_layer / udp_layer
+packet.show()
+
+send(packet)
 
 
